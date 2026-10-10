@@ -1,0 +1,43 @@
+# Environments
+.venv/
+venv/
+env/
+.env
+.env.*
+*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Data (not redistributed - see README "Data sources")
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+.fastf1_cache/
+fastf1_cache/
+cache/
+
+# Generated model artifacts
+artifacts/*
+!artifacts/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# IDEs / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

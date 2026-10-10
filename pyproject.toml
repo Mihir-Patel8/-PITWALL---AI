@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pitwall-ai"
+version = "0.1.0"
+description = "PITWALL AI - Formula 1 Race Strategy Intelligence System (educational project)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = [
+    "fastf1>=3.4,<4",
+    "pandas>=2.2,<3",
+    "numpy>=1.26,<3",
+    "scikit-learn>=1.4,<2",
+    "plotly>=5.20,<7",
+    "streamlit>=1.50,<2",
+    "joblib>=1.3,<2",
+]
+
+[tool.setuptools.packages.find]
+include = ["pitwall_ai*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

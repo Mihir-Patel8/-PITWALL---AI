@@ -1,0 +1,8 @@
+# Runtime dependencies (compatible ranges, tested with Python 3.12)
+fastf1>=3.4,<4
+pandas>=2.2,<3
+numpy>=1.26,<3
+scikit-learn>=1.4,<2
+plotly>=5.20,<7
+streamlit>=1.50,<2
+joblib>=1.3,<2

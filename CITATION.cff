@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "PITWALL AI - Formula 1 Race Strategy Intelligence System"
+type: software
+version: 0.1.0
+date-released: 2026-10-10
+license: MIT
+abstract: >-
+  An independent, educational analytics application combining historical Formula 1 lap data,
+  machine-learning lap-time models and a pit-stop strategy simulator.
+authors:
+  - name: "REPLACE WITH YOUR NAME"
+keywords:
+  - formula 1
+  - race strategy
+  - machine learning
+  - streamlit
