@@ -16,7 +16,7 @@ ARTIFACTS_DIR: Path = PROJECT_ROOT / "artifacts"
 FASTF1_CACHE_DIR: Path = RAW_DIR / "fastf1_cache"
 DOCS_DIR: Path = PROJECT_ROOT / "docs"
 
-DEFAULT_DATASET_PATH: Path = PROCESSED_DIR / "laps.csv"
+DEFAULT_DATASET_PATH: Path = PROJECT_ROOT / "laps.csv"
 COLLECTION_REPORT_PATH: Path = PROCESSED_DIR / "collection_report.json"
 MODEL_PATH: Path = ARTIFACTS_DIR / "lap_time_model.joblib"
 EVALUATION_PATH: Path = ARTIFACTS_DIR / "evaluation.json"
