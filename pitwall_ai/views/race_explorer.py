@@ -51,7 +51,6 @@ def _historical_session() -> tuple[pd.DataFrame, pd.DataFrame, dict, str] | None
     return all_laps, cleaned, report, label
 
 
-```python
 def render(ctx: AppContext) -> None:
     st.subheader("Race Explorer")
     mode = st.radio(
@@ -64,7 +63,7 @@ def render(ctx: AppContext) -> None:
         index=0 if not ctx.synthetic else 1,
         horizontal=True,
     )
-```
+
 
 
 
