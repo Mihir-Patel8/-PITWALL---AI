@@ -11,7 +11,10 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
+import fastf1
 import pandas as pd
+
+fastf1.set_log_level("DEBUG")
 
 from pitwall_ai.config import (
     DATA_SOURCE_HISTORICAL,
