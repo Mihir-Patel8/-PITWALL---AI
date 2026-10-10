@@ -1,5 +1,5 @@
 # Runtime dependencies (compatible ranges, tested with Python 3.12)
-fastf1==3.8.3
+fastf1==3.6.3
 pandas==2.2.3
 numpy>=1.26,<3
 scikit-learn>=1.4,<2
