@@ -53,21 +53,73 @@ def _historical_session() -> tuple[pd.DataFrame, pd.DataFrame, dict, str] | None
 
 def render(ctx: AppContext) -> None:
     st.subheader("Race Explorer")
-    mode = st.radio(
-        "Data mode", ["Demo (synthetic)", "Historical (live FastF1 load)"], horizontal=True
+       mode = st.radio(
+        "Data mode",
+        [
+            "Collected historical dataset",
+            "Demo (synthetic)",
+            "Historical (live FastF1 load)",
+        ],
+        index=0 if not ctx.synthetic else 1,
+        horizontal=True,
     )
 
     report: dict | None = None
-    if mode.startswith("Demo"):
+
+    if mode == "Collected historical dataset":
+        all_laps = ctx.laps.copy()
+
+        seasons = sorted(
+            all_laps["Season"].dropna().unique(), reverse=True
+        )
+        season = st.selectbox("Season", seasons)
+
+        season_laps = all_laps[all_laps["Season"] == season]
+
+        events = (
+            season_laps[["RoundNumber", "EventName"]]
+            .drop_duplicates()
+            .sort_values("RoundNumber")
+        )
+
+        choices = {
+            f"{int(row.RoundNumber)} - {row.EventName}":
+            (row.RoundNumber, row.EventName)
+            for row in events.itertuples(index=False)
+        }
+
+        choice = st.selectbox("Grand Prix", list(choices))
+        round_number, event_name = choices[choice]
+
+        session_types = sorted(
+            season_laps[
+                (season_laps["RoundNumber"] == round_number)
+                & (season_laps["EventName"] == event_name)
+            ]["SessionType"].dropna().unique()
+        )
+
+        session_type = st.selectbox("Session", session_types)
+
+        all_laps = season_laps[
+            (season_laps["RoundNumber"] == round_number)
+            & (season_laps["EventName"] == event_name)
+            & (season_laps["SessionType"] == session_type)
+        ].copy()
+
+        laps = all_laps.copy()
+        label = f"{int(season)} {event_name} ({session_type})"
+        synthetic = False
+
+    elif mode.startswith("Demo"):
         raw, cleaned = common.demo_frames()
         events = sorted(cleaned["EventName"].unique())
         event = st.selectbox("Demo event", events)
         all_laps = raw[raw["EventName"] == event]
-        # Pick the first edition of this circuit for a single-race view.
         first_id = sorted(all_laps["EventId"].unique())[0]
         all_laps = all_laps[all_laps["EventId"] == first_id]
         laps = cleaned[cleaned["EventId"] == first_id]
         label, synthetic = f"{event} [synthetic edition {first_id}]", True
+
     else:
         loaded = _historical_session()
         if loaded is None:
